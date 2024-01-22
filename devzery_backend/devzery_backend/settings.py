@@ -34,9 +34,9 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sessions',
     'admin_user',
     'authorisation',
     'user',
@@ -88,7 +88,7 @@ DATABASES = {
     }
 }
 
-
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
