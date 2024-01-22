@@ -51,7 +51,15 @@ def login(request):
 
                     if password == user.password:
                         # Generate a session token
+                        request.session['_auth_user_id'] = user.unique_id
+
+                        # Print session key and data for debugging
+                        print(f"Session Key: {request.session.session_key}")
+                        print(f"Session Data: {request.session._session}")
+
                         request.session['is_admin'] = user.is_admin
+                        request.session['id'] = user.unique_id
+                        request.session['username'] = user.username
                         request.session.save()
 
                         # Return the session token in the response

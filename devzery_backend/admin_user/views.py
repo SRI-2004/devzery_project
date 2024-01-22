@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.sessions.models import Session
 from django.contrib.sessions.backends.db import SessionStore
 from django.http import JsonResponse
-from .models import AdminUserProfile
+from authorisation.models import AuthorizationUser
 import json
 
 @csrf_exempt
@@ -23,7 +23,7 @@ def get_profiles(request):
         print(f"Session is_admin: {is_admin}")
 
         if is_admin:
-            profiles = AdminUserProfile.objects.values('name', 'age', 'profession', 'phone_number', 'email_id')
+            profiles = AuthorizationUser.objects.values('name', 'age', 'profession', 'phone_number', 'email_id')
             return JsonResponse({'status': 'success', 'profiles': list(profiles)})
         else:
             return JsonResponse({'status': 'error', 'message': 'Access denied'})
