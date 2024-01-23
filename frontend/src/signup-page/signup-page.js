@@ -40,7 +40,7 @@ const SignupPage = () => {
       }
 
       // Redirect to the login page upon successful signup
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       console.error('Error during signup:', error.message);
     }
@@ -50,7 +50,7 @@ const SignupPage = () => {
     <div className="login-container">
       <img
         loading="lazy"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a7462a3-86e2-4c9f-ae69-33a079f1a629?"
+        src="https://static.wixstatic.com/media/85c200_6a8d1536dfb74604b5e839845c9795ff~mv2.png/v1/crop/x_4,y_0,w_229,h_62/fill/w_130,h_35,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Group%2031.png"
         className="img"
       />
       <div className="login-form">

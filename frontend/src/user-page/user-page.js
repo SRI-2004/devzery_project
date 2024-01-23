@@ -41,10 +41,32 @@ const UserPage = () => {
     fetchUserData();
   }, []); 
 
-  const navigateToLogin = () => {
-    localStorage.removeItem('sessionToken');
-    navigate('/login'); 
-  };
+  const navigateToLogin = async () => {
+    try {
+      // Replace 'http://your-django-backend.com' with the actual URL of your Django backend
+      const sessionToken = localStorage.getItem('sessionToken');
+      const response = await fetch('http://127.0.0.1:8000/user/logout/', {
+        method: 'POST',  // You might use 'GET' or 'DELETE' based on your backend setup
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          session_token: sessionToken,
+        }),
+      });
+
+      if (response.ok) {
+        // Successful logout, you can redirect or perform other actions here
+        navigate('/')
+        console.log('Logout successful');
+      } else {
+        // Handle errors or failed logout
+        console.error('Logout failed');
+      }
+    } catch (error) {
+      console.error('Error during logout:', error.message);
+    }
+  }
   return (
     <div className="user-container">
     <div className="top-row">
@@ -81,7 +103,7 @@ const UserPage = () => {
             <p className="info-item">Age: {user.age}</p>
             <p className="info-item">ID: {user.unique_id}</p>
             <p className="info-item">username: {user.username}</p>
-            <p className="info-item">Admin: {user.is_admin}</p>
+            <p className="info-item">Admin: False</p>
             <p className="info-item">Location: {user.location}</p>
           </div>
         </div>

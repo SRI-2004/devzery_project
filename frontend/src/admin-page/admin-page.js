@@ -5,6 +5,7 @@ import './admin-page.css'
 const AdminPage = () => {
   const [activeUsers, setActiveUsers] = useState([]);
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     // Fetch active users data using the locally stored session token
@@ -39,20 +40,66 @@ const AdminPage = () => {
 
     fetchActiveUsers();
   }, []); // Empty dependency array ensures the effect runs once on mount
+  useEffect(() => {
+    // Fetch user data using the locally stored session token
+    const fetchUserData = async () => {
+      try {
+        // Get the session token from local storage
+        const sessionToken = localStorage.getItem('sessionToken');
 
-  const navigateToLogin = () => {
-    // Implement logout logic if needed
-    // For example, clear the session token and navigate to the login page
-    localStorage.removeItem('sessionToken');
-    navigate('/login'); // Adjust the path based on your login route
-  };
+        // Make a POST request to the API with the session token
+        const response = await fetch('http://127.0.0.1:8000/user/user_info/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            session_token: sessionToken,
+          }),
+        });
 
-  const navigateToHist = () => {
-    // Implement navigation to login history if needed
-    // For example, navigate to a login history page
-    navigate('/login-history'); // Adjust the path based on your login history route
-  };
+        if (!response.ok) {
+          throw new Error('Failed to fetch user data');
+        }
 
+        // Parse the response and set the user state
+        const userData = await response.json();
+        const user_data = userData.user_details;
+        console.log(user_data);
+        setUser(user_data);
+      } catch (error) {
+        console.error('Error fetching user data:', error.message);
+      }
+    };
+
+    fetchUserData();
+  }, []); 
+
+
+  const navigateToLogin = async () => {
+    try {
+      
+      const sessionToken = localStorage.getItem('sessionToken');
+      const response = await fetch('http://127.0.0.1:8000/user/logout/', {
+        method: 'POST',  
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          session_token: sessionToken,
+        }),
+      });
+
+      if (response.ok) {
+        navigate('/')
+        console.log('Logout successful');
+      } else {
+        console.error('Logout failed');
+      }
+    } catch (error) {
+      console.error('Error during logout:', error.message);
+    }
+  }
   return (
     <div>
       <div className="header">
@@ -80,16 +127,15 @@ const AdminPage = () => {
           <div className="dashboard">
             <h1>Dashboard</h1>
             <div className="active-users">
-              <button className="active-users-button" onClick={navigateToHist}>
-                Login History
-              </button>
-              <p>hello</p>
+              <p className="info-item">name: {user?.name}</p>
+              <p className="info-item">User ID: {user?.unique_id}</p>
+              <p className="info-item">Admin: True</p>
             </div>
           </div>
         </div>
         <div className="login-history-container">
           <div className="login-history">
-            <h2>Current Active Users</h2>
+            <h2>Current Profiles</h2>
             <table className="log-table">
               <thead>
                 <tr>
