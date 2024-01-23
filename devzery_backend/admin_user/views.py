@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # admin/views.py
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.sessions.models import Session
@@ -30,12 +30,30 @@ def get_profiles(request):
             return JsonResponse({'status': 'error', 'message': 'Access denied'})
     except (Session.DoesNotExist, json.JSONDecodeError):
         return JsonResponse({'status': 'error', 'message': 'Invalid session token'})
+
+@csrf_exempt
 def logout_view(request):
-    # Get the current session
-    session_key = request.session.session_key
+    try:
+        # Get the session token from the request data
+        data = json.loads(request.body.decode('utf-8'))
+        session_token = data.get('session_token')
 
-    # Delete the session from the database
-    Session.objects.filter(session_key=session_key).delete()
+        # Check if the session token is provided
+        if not session_token:
+            raise ValueError('Session token is missing in the request.')
 
-    # Create a new session
-    request.session.create()
+        # Delete the session from the database
+        deleted_count, _ = Session.objects.filter(session_key=session_token).delete()
+
+        # Check if the session was deleted successfully
+        if deleted_count == 0:
+            raise ValueError('Session deleted successfully.')
+
+        # Create a new session
+        request.session.create()
+
+        return JsonResponse({'status': 'success'})
+
+    except Exception as e:
+        # Handle exceptions and return an error response
+        return JsonResponse({'status': 'error', 'message': str(e)})

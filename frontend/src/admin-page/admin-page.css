@@ -30,7 +30,7 @@ body {
 }
 
 .logout-button {
-  background-color: #000048;
+  background-color: #ac6199;
   color: #fff;
   font: 500 25px Poppins, sans-serif;
   border: none;
@@ -57,8 +57,6 @@ body {
   width: 20%;
   background-color: #ebebeb;
   padding: 20px;
-  
- /* Remove margin */
 }
 
 .dashboard {
@@ -78,15 +76,6 @@ body {
   padding-bottom: 100%;
 }
 
-.active-users-button {
-  background: linear-gradient(96deg, #36c2cf 6.74%, #3998cf 36.58%, #3c66cf 82.11%);
-  color: #fff;
-  border: none;
-  font-size: 25px;
-  border-radius: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
 
 .login-history-container {
   width: 80%;
