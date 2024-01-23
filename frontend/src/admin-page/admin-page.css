@@ -1,0 +1,133 @@
+/* adminpage.css */
+
+/* Reset some default browser styles */
+body, h1, h2, table {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.logo {
+  max-width: 100%;
+  width: 400px;
+}
+
+.logout-button {
+  background-color: #000048;
+  color: #fff;
+  font: 500 25px Poppins, sans-serif;
+  border: none;
+  border-radius: 14px;
+  text-shadow: none;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logout-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.container {
+  display: flex;
+  width: 95%;
+  
+}
+
+.dashboard-container {
+  width: 20%;
+  background-color: #ebebeb;
+  padding: 20px;
+  
+ /* Remove margin */
+}
+
+.dashboard {
+  background-color: #f5f5f5;
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+}
+
+.dashboard h1 {
+  font-size: 32px;
+  color: #000048;
+}
+
+.active-users {
+  margin-top: 20px;
+  padding-bottom: 100%;
+}
+
+.active-users-button {
+  background: linear-gradient(96deg, #36c2cf 6.74%, #3998cf 36.58%, #3c66cf 82.11%);
+  color: #fff;
+  border: none;
+  font-size: 25px;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.login-history-container {
+  width: 80%;
+  background-color: #ebebeb;
+  padding: 20px;
+  margin: 0; /* Remove margin */
+}
+
+.login-history {
+  background-color: #f5f5f5;
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+}
+
+.login-history h2 {
+  font-size: 32px;
+  color: #000048;
+}
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.log-table th, .log-table td {
+  border: 1px solid #000;
+  padding: 10px;
+  text-align: center;
+}
+
+.log-table th {
+  background-color: #000048;
+  color: #fff;
+}
+
+.log-table tr:nth-child(even) {
+  background-color: #ebebeb;
+}
+
+.log-table tr:nth-child(odd) {
+  background-color: #f5f5f5;
+}

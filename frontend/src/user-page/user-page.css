@@ -1,0 +1,124 @@
+/* UserPage.css */
+
+.container {
+  background-color: #ebebeb;
+  border-radius: 14px;
+  padding-left: 75px;
+  padding-right: 75px;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-left: 60px;
+  margin-right: 60px;
+  align-items: center;
+  margin-bottom: 8%; /* Add padding between top row and info containers */
+}
+
+.logo {
+  width: 100px; /* Adjust the size as needed */
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.profile-img {
+  width: 450px; /* Increased size */
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+  padding-bottom: 100px;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  background-color: #ac6199;
+  border-radius: 14px;
+  padding: 10px 20px; /* Adjust the padding to your preference */
+}
+
+.logout-btn img {
+  width: 30px; /* Adjust the size as needed */
+  height: 30px;
+  margin-right: 10px;
+}
+
+.logout-btn button {
+  background: transparent;
+  border: none;
+  color: #fff; /* Text color */
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.info-container {
+  display: flex;
+  gap: 20px;
+  margin-left: 15%;
+  justify-content: center; /* Center horizontally */
+  width: 75%;
+}
+
+.personal,
+.account {
+  flex: 0.5; /* Adjust the width of each container */
+  background-color: #000048;
+  border-radius: 14px;
+  padding: 20px;
+  color: #fff;
+}
+
+.account-details,
+.personal-details {
+  background-color: #fff; /* White background for details */
+  border-radius: 14px;
+  padding: 20px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.avatar {
+  width: 220px; /* Increased size */
+  object-fit: cover;
+  object-position: center;
+}
+
+.name {
+  color: #000;
+  font-weight: 600;
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+.job-title {
+  color: #000;
+  opacity: 0.75;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.info-item {
+  color: #464646;
+  opacity: 0.75;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+}
