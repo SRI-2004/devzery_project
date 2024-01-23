@@ -34,8 +34,9 @@ const LoginPage = () => {
       if (!response.ok) {
         throw new Error('Login failed');
       }
-
+      console.log(response)
       // Parse the response and get the session token
+      if(response.ok){
       const data = await response.json();
       const session_token = data.session_token;
 
@@ -51,6 +52,7 @@ const LoginPage = () => {
       } else {
         navigate('/user');
       }
+    }
     } catch (error) {
       console.error('Error during login:', error.message);
     }
