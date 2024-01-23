@@ -24,7 +24,7 @@ def get_user_details(request):
 
         if user_id is not None:
             # Use the user ID to filter the user details
-            user_details = AuthorizationUser.objects.values('name', 'age', 'profession', 'phone_number',
+            user_details = AuthorizationUser.objects.values('name', 'age', 'profession', 'phone_number','location','unique_id','username',
                                                             'email_id').get(unique_id=user_id)
 
             if user_details is not None:
@@ -37,3 +37,13 @@ def get_user_details(request):
         return JsonResponse({'status': 'error', 'message': 'Invalid session token'})
     except AuthorizationUser.DoesNotExist:
         return JsonResponse({'status': 'error', 'message': 'User does not exist'})
+
+def logout_view(request):
+    # Get the current session
+    session_key = request.session.session_key
+
+    # Delete the session from the database
+    Session.objects.filter(session_key=session_key).delete()
+
+    # Create a new session
+    request.session.create()

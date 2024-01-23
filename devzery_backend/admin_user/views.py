@@ -23,9 +23,19 @@ def get_profiles(request):
         print(f"Session is_admin: {is_admin}")
 
         if is_admin:
-            profiles = AuthorizationUser.objects.values('name', 'age', 'profession', 'phone_number', 'email_id')
+            profiles = AuthorizationUser.objects.values('name', 'age', 'profession', 'phone_number','location','unique_id','username',
+                                                            'email_id')
             return JsonResponse({'status': 'success', 'profiles': list(profiles)})
         else:
             return JsonResponse({'status': 'error', 'message': 'Access denied'})
     except (Session.DoesNotExist, json.JSONDecodeError):
         return JsonResponse({'status': 'error', 'message': 'Invalid session token'})
+def logout_view(request):
+    # Get the current session
+    session_key = request.session.session_key
+
+    # Delete the session from the database
+    Session.objects.filter(session_key=session_key).delete()
+
+    # Create a new session
+    request.session.create()
